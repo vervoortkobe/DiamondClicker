@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Diamond Clicker</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<meta name="description" content="Diamond Clicker is the BEST Minecraft clicker! Click, buy, repeat.">
+    
+    <link id="favicon" rel="icon" href="https://cdn.glitch.com/a489bd55-3bca-429f-a472-4f9cfc91a8f9%2Ffavicon.ico.png?v=1598880975463" type="image/x-icon">
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+				<style>
+					#btn-to-add:hover {
+						opacity: 0.80;
+					}
+				</style>
+
+					<section id="main">
+						<header>
+							<span class="avatar"><a href="#" onclick="add()"><img id="btn-to-add" src="https://gamepedia.cursecdn.com/minecraft_gamepedia/6/6a/Diamond_JE2_BE2.png" alt="" /></a></span>
+							<h1 style="background-color:cornflowerblue; border-radius: 10px;" id="counter">No Diamonds</h1>
+							<button onclick="save()">Save</button><button onclick="load()">Load</button>
+							<h1>===MULTIPLIERS===</h1>
+							<button id="buym" onclick="buyMult()">Buy | 50$</button>
+							<h1>===CLICKERS===</h1>
+							<button id="buyac" onclick="addClicker()">Buy | 100$</button>
+						</header>
+
+						<script>
+							var clicks = 0;
+							var multPrice = 50;
+							var multiplier = 1;
+							var clickers = 0;
+							var clickerPrice = 100;
+							setInterval(() => {
+								clicks += clickers;
+								var btn = document.getElementById("counter");
+								btn.innerText = clicks;
+							}, 1000);
+
+							function save() {
+								localStorage.setItem('diamonds', clicks)
+							}
+
+							function load() {
+								clicks = pareseInt(localStorage.getItem("diamonds"));
+								var counter = document.getElementById("counter");
+								counter.innerText = clicks;
+							}
+							
+							function addClicker() {
+								if (clicks > clickerPrice || clicks == clickerPrice) {
+									clicks = clicks - clickerPrice;
+									clickers += 1;
+									clickerPrice *= 2;
+									counter.innerText = clicks;
+									var btn = document.getElementById("buyac");
+									btn.innerText = "Buy | " + clickerPrice + "$";
+								};
+							};
+
+							function buyMult() {
+								if (clicks > multPrice || clicks == multPrice) {
+									clicks = clicks - multPrice;
+									multiplier += 1;
+									multPrice *= 2;
+									counter.innerText = clicks;
+									var btn = document.getElementById("buym");
+									btn.innerText = "Buy | " + multPrice + "$";
+								};
+							};
+
+							function add() {
+								clicks += 1 * multiplier;
+								var counter = document.getElementById("counter");
+								counter.innerText = clicks;
+							};
+						</script>
+						<!--
+						<hr />
+						<h2>Extra Stuff!</h2>
+						<form method="post" action="#">
+							<div class="fields">
+								<div class="field">
+									<input type="text" name="name" id="name" placeholder="Name" />
+								</div>
+								<div class="field">
+									<input type="email" name="email" id="email" placeholder="Email" />
+								</div>
+								<div class="field">
+									<select name="department" id="department">
+										<option value="">Department</option>
+										<option value="sales">Sales</option>
+										<option value="tech">Tech Support</option>
+										<option value="null">/dev/null</option>
+									</select>
+								</div>
+								<div class="field">
+									<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
+								</div>
+								<div class="field">
+									<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
+								</div>
+								<div class="field">
+									<label>But are you a robot?</label>
+									<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
+									<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
+								</div>
+							</div>
+							<ul class="actions special">
+								<li><a href="#" class="button">Get Started</a></li>
+							</ul>
+						</form>
+						<hr />
+						-->
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; ReTriX</li><li>Youtube: <a href="https://www.youtube.com/channel/UCxAuAR4AVg6so8mXkmNJkag">ReTriX</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
+</html>
